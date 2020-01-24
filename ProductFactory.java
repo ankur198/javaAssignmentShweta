@@ -20,8 +20,8 @@ public class ProductFactory {
     int quantity = 0;
     ProductType type = ProductType.raw;
 
-    for (int i = 0; i < args.length; i += 2) {
-      try {
+    try {
+      for (int i = 0; i < args.length; i += 2) {
         String parameter = args[i];
         String argument = args[i + 1];
         if (parameter.equals("-name")) {
@@ -34,10 +34,11 @@ public class ProductFactory {
         } else if (parameter.equals("-type") && isNameFound) {
           type = ProductType.valueOf(argument);
         }
-      } catch (Exception e) {
-        System.out.println(e.getMessage());
-        return false;
       }
+    } catch (Exception e) {
+      // e.printStackTrace();
+      System.out.println(e.toString());
+      return false;
     }
 
     System.out.println(new Product(name, quantity, price, type).toString());

@@ -24,5 +24,7 @@ public class Main {
         System.out.println("Invalid input\n");
       }
     }
+    sc.close();
+    return;
   }
 }
