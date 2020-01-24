@@ -1,18 +1,28 @@
-
-import Product.Product;
-import Product.ProductType;
+import java.util.Scanner;
 
 /**
- * main
+ * Main
  */
 public class Main {
 
   public static void main(String[] args) {
-    System.out.println("Shweta pgl h");
-    for (String s : args) {
-      System.out.println(s);
+    boolean res = ProductFactory.CreateProduct(args);
+    Scanner sc = new Scanner(System.in);
+
+    while (res) {
+      System.out.println("Do you want to add?(y/n)");
+      String ch = sc.nextLine();
+      if (ch.toLowerCase().equals("y")) {
+        System.out.println("Enter detaild of new product.\n");
+        String rawArgs = sc.nextLine();
+        args = rawArgs.split(" ");
+        res = ProductFactory.CreateProduct(args);
+      } else if (ch.toLowerCase().equals("n")) {
+        sc.close();
+        return;
+      } else {
+        System.out.println("Invalid input\n");
+      }
     }
-    // Product p = new Product("name", 20, 20, ProductType.manufactured);
-    // System.out.println(p.toString());
   }
 }
